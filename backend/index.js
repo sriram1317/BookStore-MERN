@@ -3,11 +3,22 @@ import { PORT, mongoURL } from "./config.js";
 import mongoose, { mongo } from "mongoose";
 import { Book } from "./models/bookModels.js";
 import booksRoute from "./routes/booksRoute.js";
-
+import cors from "cors";
 
 const app = express();
 
 app.use(express.json());
+
+
+// Middleware handling
+// option 1, allowing all origin, methods etc
+// app.use(cors());
+// option 2, mentioning the origin methods and allowedHeaders
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: ['GET','POST','PUT','DELETE'],
+    allowedHeaders: ['Content-Type'],
+}));
 
 // route for Home Page
 app.get('/', (request, response) => {

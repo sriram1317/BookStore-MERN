@@ -1,9 +1,10 @@
 import React from 'react'
 
-const createBook = () => {
+const CreateBook = () => {
   return (
-    <div>createBook</div>
+    <div>C
+    reateBook</div>
   )
 }
 
-export default createBook
+export default CreateBook

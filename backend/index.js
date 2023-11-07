@@ -12,13 +12,13 @@ app.use(express.json());
 
 // Middleware handling
 // option 1, allowing all origin, methods etc
-// app.use(cors());
+app.use(cors());
 // option 2, mentioning the origin methods and allowedHeaders
-app.use(cors({
-    origin: 'http://localhost:3000',
-    methods: ['GET','POST','PUT','DELETE'],
-    allowedHeaders: ['Content-Type'],
-}));
+// app.use(cors({
+//     origin: 'http://localhost:3000',
+//     methods: ['GET','POST','PUT','DELETE'],
+//     allowedHeaders: ['Content-Type'],
+// }));
 
 // route for Home Page
 app.get('/', (request, response) => {

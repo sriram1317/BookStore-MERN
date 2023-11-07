@@ -2,7 +2,7 @@ import React, { useEffect, useState} from 'react';
 import axios from 'axios';
 import Spinner from '../components/Spinner';
 import { Link } from 'react-router-dom';
-import { AiOutLineEdit } from 'react-icons/ai';
+//import { AiOutLineEdit } from 'react-icons/ai';
 import { BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
 
@@ -13,7 +13,8 @@ const Home = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get('http://localhost:5555/books').then((response) => {
+      .get('http://localhost:5555/books')
+      .then((response) => {
         setBooks(response.data.data);
         setLoading(false);
       })
@@ -39,34 +40,43 @@ const Home = () => {
             <tr>
               <th className='border border-stale-600 rounded-md'>No</th>
               <th className='border border-stale-600 rounded-md'>Title</th>
-              <th className='border border-stale-600 rounded-md max-md-hidden'>Author</th>
-              <th className='border border-stale-600 rounded-md max-md-hidden'>Published Year</th>
+              <th className='border border-stale-600 rounded-md max-md:hidden'>Author</th>
+              <th className='border border-stale-600 rounded-md max-md:hidden'>Published Year</th>
               <th className='border border-stale-600 rounded-md'>Operations</th>
             </tr>
           </thead>
           <tbody>
             {
               books.map((book, index) => {
-                <tr key={book._id} className='h-8'>
-                  <td className='border border-slate-700 rounded-md text-center'>
-                    {index + 1}
-                  </td>
-                  <td className='border border-slate-700 rounded-md text-center'>
-                    {book.title}
-                  </td>
-                  <td className='border border-slate-700 rounded-md text-center max-md:hidden'>
-                    {book.author}
-                  </td>
-                  <td className='border border-slate-700 rounded-md text-center max-md:hidden'>
-                    {book.publishedYear}
-                  </td>
+                // <tr key={book._id} className='h-8'>
+                //   <td>
+                //     {index + 1}
+                //   </td>
+                //   <td className='border border-slate-700 rounded-md text-center'>
+                //     {book.title}
+                //   </td>
+                //   <td className='border border-slate-700 rounded-md text-center max-md:hidden'>
+                //     {book.author}
+                //   </td>
+                //   <td className='border border-slate-700 rounded-md text-center max-md:hidden'>
+                //     {book.publishedYear}
+                //   </td>
+
+                <tr key={book._id}>
+            <td>{index+1}</td>
+            <td>{book.title}</td>
+            <td>{book.author}</td>
+            <td>{book.publishedYear}</td>
+            <td> :  {book._id}</td>
+
+                  
                   <td className='border border-slate-700 rounded-md text-center'>
                     <div className='flex justify-center gap-x-4'>
                       <Link to={`/books/details/${book._id}`}>
                         <BsInfoCircle className='text-2xl text-green-800' />
                       </Link>
                       <Link to={`/books/edit/${book._id}`}>
-                        <AiOutLineEdit className='text-2xl text-yellow-600'/>
+                        <MdOutlineDelete className='text-2xl text-yellow-600'/>
                       </Link>
                       <Link to={`/books/delete/${book._id}`}>
                         <MdOutlineDelete className='text-2x1 text-red-600'/>
@@ -79,6 +89,17 @@ const Home = () => {
           </tbody>
         </table>
       )}
+      {/* <div>
+        {books.map((b,i) => (
+          <tr key={b._id}>
+            <td>{i+1}</td>
+            <td>{b.title}</td>
+            <td>{b.author}</td>
+            <td>{b.publishedYear}</td>
+            <td> :  {b._id}</td>
+          </tr>
+        ))}
+      </div> */}
     </div>
   )
 }

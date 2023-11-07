@@ -4,7 +4,6 @@ import { Book } from "../models/bookModels.js";
 const router = express.Router();
 
 
-
 // Route to Get all books from database
 router.get('/', async (request, response) =>{
     try{
